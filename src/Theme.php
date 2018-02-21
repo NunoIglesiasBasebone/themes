@@ -26,14 +26,16 @@ class Theme extends Collection
      */
     public function set($theme)
     {
-        list($theme, $parent) = $this->resolveTheme($theme);
-        
+        var_dump("Set Theme $theme");
+        list($theme, $parent,$grandparent) = $this->resolveTheme($theme);
+
         if (! $this->isCurrent($theme->get('slug')) and (! is_null($this->getCurrent()))) {
-            $this->removeRegisteredLocation($theme, $parent);
+            $this->removeRegisteredLocation($theme);
         }
-        
-        $this->addRegisteredLocation($theme, $parent);
-        
+        //Add $theme, parent, and grandparent view path to viewfinder
+        if($grandparent)
+            $this->addRegisteredLocation($theme,$parent,$grandparent);
+
         $this->setCurrent($theme->get('slug'));
     }
     
