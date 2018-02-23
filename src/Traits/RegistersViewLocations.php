@@ -86,14 +86,14 @@ trait RegistersViewLocations
         //register grandparent view path if exists
         if (! is_null($grandparent)) {
             $grandparentLocation = config('themes.paths.absolute').'/'.$grandparent->get('slug').'/views';
-            var_dump($grandparentLocation);
+         //   var_dump($grandparentLocation);
             app('view.finder')->prependLocation($grandparentLocation);
         }
 
         //register parent view path if exists
         if (! is_null($parent)) {
             $parentLocation = config('themes.paths.absolute').'/'.$parent->get('slug').'/views';
-            var_dump($parentLocation);
+        //    var_dump($parentLocation);
             app('view.finder')->prependLocation($parentLocation);
         }
 

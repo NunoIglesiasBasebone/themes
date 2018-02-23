@@ -6,6 +6,7 @@ use View;
 use Caffeinated\Manifest\Manifest;
 use Illuminate\Support\ServiceProvider;
 use Caffeinated\Themes\View\ThemeViewFinder;
+use Illuminate\Support\Facades\Blade;
 
 class ThemesServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,13 @@ class ThemesServiceProvider extends ServiceProvider
 		$this->publishes([
 			__DIR__.'/../config/themes.php' => config_path('themes.php')
 		]);
+
+
+
+        Blade::directive('includeFromTheme', function($view) {
+            $view =preg_replace('/^Theme::/i', '', $view);
+           // var_dump($view);
+            return  "<?php echo \$__env->make( '$view', array_except(get_defined_vars(), array('__data', '__path')) )->render(); ?>";        });
 	}
 
 	/**
