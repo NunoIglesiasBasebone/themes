@@ -392,7 +392,7 @@ class Themes
         $source    = null;
 
         if(!isset($version)) {
-            $version = $this->config('themes_version_system_enabled');
+            $version = $this->config->get('themes.themes_version_system_enabled');
         }
 
         //This function allows the search of assets in the current theme and it parent (if exists)
