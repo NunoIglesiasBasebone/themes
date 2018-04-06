@@ -392,12 +392,7 @@ class Themes
         $source    = null;
 
         if(!isset($version)) {
-            $config = Config::get('basebone.general');
-            if(array_key_exists('enable_version_system', $config)) {
-                $version = $config['enable_version_system'];
-            } else {
-                $version = false;
-            }
+            $version = $this->config('themes_version_system_enabled');
         }
 
         //This function allows the search of assets in the current theme and it parent (if exists)

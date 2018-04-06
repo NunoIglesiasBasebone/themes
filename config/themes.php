@@ -63,6 +63,9 @@ return [
 
 		'assets' => 'assets',
 
-	]
+	],
+
+    'themes_version_system_enabled' => env('THEMES_ASSETS_VERSION_ENABLE', false)
+
 
 ];
