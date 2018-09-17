@@ -65,7 +65,8 @@ return [
 
 	],
 
-    'themes_version_system_enabled' => env('THEMES_ASSETS_VERSION_ENABLE', false)
+    'themes_version_system_enabled' => env('THEMES_ASSETS_VERSION_ENABLE', false),
+    'themes_assets_cdn_enabled' => env('THEMES_ASSETS_CDN_ENABLE', false)
 
 
 ];

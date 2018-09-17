@@ -446,7 +446,11 @@ class Themes
             $themeAssetURL = url($themeAssetURL);
         }
 
-
+        if($this->config->get('themes.themes_assets_cdn_enabled')){
+            $CDNServer=  Config::get('basebone.general.public_assets_url',null);
+            if($CDNServer)
+                $themeAssetURL = $CDNServer.$themeAssetURL;
+        }
         return $themeAssetURL;
 
     }
