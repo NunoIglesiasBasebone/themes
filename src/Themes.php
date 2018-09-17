@@ -452,9 +452,6 @@ class Themes
                 $themeAssetURL = $CDNServer.$themeAssetURL;
         }
 
-        //Remove unnecessary //
-        $themeAssetURL = str_replace('//', '/', $themeAssetURL);
-
         return $themeAssetURL;
 
     }
