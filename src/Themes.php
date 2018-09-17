@@ -436,9 +436,6 @@ class Themes
             $themeAssetURL = $segments[0];
         }
 
-        //Remove unnecessary //
-        $themeAssetURL = str_replace('//', '/', $themeAssetURL);
-
         // If versioning is active, use the processed asset route as a parameter to elixir, which will return
         // the versioned file route from the assets manifest on /public/build/rev-manifest.json
         // If versioning is not active, encapsulate URL using url() in order to get the absolute URL instead
@@ -454,6 +451,10 @@ class Themes
             if($CDNServer)
                 $themeAssetURL = $CDNServer.$themeAssetURL;
         }
+
+        //Remove unnecessary //
+        $themeAssetURL = str_replace('//', '/', $themeAssetURL);
+
         return $themeAssetURL;
 
     }
