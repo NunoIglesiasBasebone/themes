@@ -451,6 +451,7 @@ class Themes
             if($CDNServer)
                 $themeAssetURL = $CDNServer.$themeAssetURL;
         }
+
         return $themeAssetURL;
 
     }
