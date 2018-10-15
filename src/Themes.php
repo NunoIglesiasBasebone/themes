@@ -10,7 +10,8 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Response;
 use Illuminate\View\Factory as ViewFactory;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Config;
+
 
 class Themes
 {
@@ -445,13 +446,11 @@ class Themes
             $themeAssetURL = url($themeAssetURL);
         }
 
-        //If loading assets from CDN is enabled try to load the CDN URL from session.
         if($this->config->get('themes.themes_assets_cdn_enabled')){
-            $CDNServer= Session::get("mediaCDN",null);
+            $CDNServer=  Config::get('basebone.general.public_assets_url',null);
             if($CDNServer)
                 $themeAssetURL = $CDNServer.$themeAssetURL;
         }
-
         return $themeAssetURL;
 
     }
