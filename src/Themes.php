@@ -2,7 +2,6 @@
 
 namespace Caffeinated\Themes;
 
-use URL;
 use Caffeinated\Themes\Exceptions\FileMissingException;
 use Illuminate\Config\Repository;
 use Illuminate\Database\Eloquent\Collection;
@@ -10,8 +9,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Response;
 use Illuminate\View\Factory as ViewFactory;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Config;
-
+use Illuminate\Support\Facades\Session;
 
 class Themes
 {
@@ -447,7 +445,11 @@ class Themes
         }
 
         if($this->config->get('themes.themes_assets_cdn_enabled')){
-            $CDNServer=  Config::get('basebone.general.public_assets_url',null);
+            //$CDNServer=  Config::get('basebone.general.public_assets_url',null);
+            $CDNServer= Session::get("mediaCDN",null);
+            if (substr($themeAssetURL, 0, strlen("/")) == "/") {
+                $themeAssetURL = substr($themeAssetURL, strlen("/"));
+            }
             if($CDNServer)
                 $themeAssetURL = $CDNServer.$themeAssetURL;
         }
