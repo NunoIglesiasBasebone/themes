@@ -447,11 +447,14 @@ class Themes
         if($this->config->get('themes.themes_assets_cdn_enabled')){
             //$CDNServer=  Config::get('basebone.general.public_assets_url',null);
             $CDNServer= Session::get("mediaCDN",null);
-            if (substr($themeAssetURL, 0, strlen("/")) == "/") {
-                $themeAssetURL = substr($themeAssetURL, strlen("/"));
-            }
-            if($CDNServer)
+
+            if($CDNServer){
+                //Remove extra slash form URL
+                if (substr($themeAssetURL, 0, strlen("/")) == "/") {
+                    $themeAssetURL = substr($themeAssetURL, strlen("/"));
+                }
                 $themeAssetURL = $CDNServer.$themeAssetURL;
+            }
         }
         return $themeAssetURL;
 
